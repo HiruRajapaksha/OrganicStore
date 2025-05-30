@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Products - GreenVine Market</title>
+  </head>
+  <body
+    class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-500 font-sans flex flex-col min-h-screen"
+  >
+    <!-- Navbar and Footer will be injected here -->
+    <div id="app"></div>
+
+    <!-- Main products content -->
+    <main class="max-w-7xl mx-auto px-6 py-16 flex-grow">
+      <h1
+        class="text-4xl font-extrabold mb-8 text-gray-900 dark:text-gray-100 text-center"
+      >
+        Our Organic Products
+      </h1>
+      <p class="text-center text-gray-700 dark:text-gray-300 mb-12">
+        Discover our carefully curated selection of organic produce, artisan goods,<br />
+        and eco-friendly products. All sourced from local farmers and producers<br />
+        who share our commitment to sustainability.
+      </p>
+
+      <!-- Tabs navigation -->
+      <div
+        id="tabs"
+        class="flex justify-center gap-6 mb-12 text-gray-700 dark:text-gray-300 font-semibold"
+      >
+        <button
+          class="tab-btn px-4 py-2 rounded-lg bg-green-700 text-white shadow-md"
+          data-tab="all"
+        >
+          All Products
+        </button>
+        <button
+          class="tab-btn px-4 py-2 rounded-lg hover:bg-green-700 hover:text-white transition"
+          data-tab="fruits"
+        >
+          Fruits
+        </button>
+        <button
+          class="tab-btn px-4 py-2 rounded-lg hover:bg-green-700 hover:text-white transition"
+          data-tab="vegetables"
+        >
+          Vegetables
+        </button>
+        <button
+          class="tab-btn px-4 py-2 rounded-lg hover:bg-green-700 hover:text-white transition"
+          data-tab="herbs"
+        >
+          Herbs & Spices
+        </button>
+        <button
+          class="tab-btn px-4 py-2 rounded-lg hover:bg-green-700 hover:text-white transition"
+          data-tab="bakery"
+        >
+          Bakery
+        </button>
+        <button
+          class="tab-btn px-4 py-2 rounded-lg hover:bg-green-700 hover:text-white transition"
+          data-tab="dairy"
+        >
+          Dairy & Eggs
+        </button>
+      </div>
+
+      <!-- Products grid -->
+      <div
+        id="products-container"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+      ></div>
+    </main>
+
+    <script>
+      // Products data with LKR prices
+      const products = [
+        {
+          emoji: "🍎",
+          name: "Organic Apples",
+          desc: "Crisp and sweet organic apples from local orchards",
+          price: "LKR 1190 per kg",
+          category: "fruits",
+          stock: true,
+        },
+        {
+          emoji: "🍅",
+          name: "Heritage Tomatoes",
+          desc: "Colorful heirloom tomatoes bursting with flavor",
+          price: "LKR 1640 per kg",
+          category: "fruits",
+          stock: true,
+        },
+        {
+          emoji: "🌿",
+          name: "Fresh Basil",
+          desc: "Aromatic organic basil perfect for cooking",
+          price: "LKR 800 per bunch",
+          category: "herbs",
+          stock: true,
+        },
+        {
+          emoji: "🍞",
+          name: "Sourdough Bread",
+          desc: "Handcrafted sourdough made with organic flour",
+          price: "LKR 1150 per loaf",
+          category: "bakery",
+          stock: true,
+        },
+        {
+          emoji: "🥚",
+          name: "Free-Range Eggs",
+          desc: "Fresh eggs from happy, free-range hens",
+          price: "LKR 980 per dozen",
+          category: "dairy",
+          stock: true,
+        },
+        {
+          emoji: "🥕",
+          name: "Organic Carrots",
+          desc: "Sweet and crunchy organic carrots",
+          price: "LKR 650 per kg",
+          category: "vegetables",
+          stock: true,
+        },
+        {
+          emoji: "🍌",
+          name: "Organic Bananas",
+          desc: "Fair trade organic bananas",
+          price: "LKR 970 per kg",
+          category: "fruits",
+          stock: false,
+        },
+        {
+          emoji: "🥬",
+          name: "Spinach Leaves",
+          desc: "Fresh organic spinach leaves",
+          price: "LKR 870 per 200g",
+          category: "vegetables",
+          stock: true,
+        },
+      ];
+
+      const productsContainer = document.getElementById("products-container");
+      const tabs = document.querySelectorAll(".tab-btn");
+
+      // Function to render products based on category
+      function renderProducts(category) {
+        productsContainer.innerHTML = "";
+
+        const filtered =
+          category === "all"
+            ? products
+            : products.filter((p) => p.category === category);
+
+        filtered.forEach((product) => {
+          const card = document.createElement("div");
+          card.className =
+            "bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer min-h-[350px]";
+          if (!product.stock) card.classList.add("opacity-50", "cursor-not-allowed");
+
+          card.innerHTML = `
+            <div class="icon text-7xl mb-5">${product.emoji}</div>
+            <h3 class="font-extrabold text-2xl mb-2 text-gray-900 dark:text-gray-100">${product.stock ? product.name : "Out of Stock"}</h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4 text-lg max-w-xs">${product.desc}</p>
+            <p class="font-semibold text-xl mb-6 text-gray-900 dark:text-gray-100">${product.price}</p>
+            <button class="font-semibold px-6 py-3 rounded-full shadow-md transition-colors duration-300 w-full max-w-xs
+              ${
+                product.stock
+                  ? "bg-green-700 hover:bg-green-800 text-white cursor-pointer"
+                  : "bg-gray-400 cursor-not-allowed text-white"
+              }"
+              ${product.stock ? "" : "disabled"}
+            >
+              ${product.stock ? "Add to Cart" : "Out of Stock"}
+            </button>
+          `;
+          productsContainer.appendChild(card);
+        });
+      }
+
+      // Handle tab click
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remove active styling from all tabs
+          tabs.forEach((t) => {
+            t.classList.remove("bg-green-700", "text-white", "shadow-md");
+            t.classList.add(
+              "hover:bg-green-700",
+              "hover:text-white",
+              "transition"
+            );
+          });
+
+          // Add active styling to clicked tab
+          tab.classList.add("bg-green-700", "text-white", "shadow-md");
+          tab.classList.remove("hover:bg-green-700", "hover:text-white", "transition");
+
+          // Render products based on tab
+          renderProducts(tab.getAttribute("data-tab"));
+        });
+      });
+
+      // Initial render of all products
+      renderProducts("all");
+    </script>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

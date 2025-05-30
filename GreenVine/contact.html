@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Contact - GreenVine Market</title>
+  </head>
+  <body
+    class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-500 font-sans flex flex-col min-h-screen"
+  >
+    <!-- Navbar and Footer will be injected here -->
+    <div id="app"></div>
+
+    <section class="max-w-4xl mx-auto px-6 py-24">
+      <h1
+        class="text-5xl font-extrabold mb-6 text-gray-900 dark:text-gray-100 text-center tracking-tight drop-shadow-sm"
+      >
+        Get in Touch
+      </h1>
+      <p
+        class="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto text-center leading-relaxed max-w-prose"
+      >
+        We'd love to hear from you! Whether you have questions about our
+        products, want to partner with us, or just want to say hello, we're here
+        to help.
+      </p>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 py-20">
+      <div class="grid grid-cols-2 md:grid-cols-2 gap-16">
+        <!-- Left column -->
+        <div class="flex flex-col gap-12">
+          <!-- Visit Our Store -->
+          <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 shadow-md">
+            <h2
+              class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100"
+            >
+              Visit Our Store
+            </h2>
+            <ul class="space-y-6 text-gray-700 dark:text-gray-300">
+              <li>
+                <div class="flex items-center space-x-3 mb-2">
+                  <span class="text-3xl">📍</span>
+                  <h3 class="font-semibold text-lg">Address</h3>
+                </div>
+                <p class="pl-10">
+                  123 Green Street<br />Bath, BA1 2AB<br />United Kingdom
+                </p>
+              </li>
+              <li>
+                <div class="flex items-center space-x-3 mb-2">
+                  <span class="text-3xl">🕒</span>
+                  <h3 class="font-semibold text-lg">Opening Hours</h3>
+                </div>
+                <p class="pl-10">
+                  Monday - Saturday: 8:00 AM - 8:00 PM<br />
+                  Sunday: 10:00 AM - 6:00 PM<br />
+                  Extended hours during harvest season
+                </p>
+              </li>
+              <li>
+                <div class="flex items-center space-x-3 mb-2">
+                  <span class="text-3xl">📞</span>
+                  <h3 class="font-semibold text-lg">Phone & Email</h3>
+                </div>
+                <p class="pl-10">
+                  Phone: +44 1225 123 456<br />
+                  Email: hello@greenvinemarket.co.uk<br />
+                  Emergency: +44 7700 900 123
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Our Services -->
+          <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 shadow-md">
+            <h2
+              class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100"
+            >
+              Our Services
+            </h2>
+            <ul
+              class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-3 text-lg"
+            >
+              <li>Weekly Delivery</li>
+              <li>Click & Collect</li>
+              <li>Custom Orders</li>
+              <li>Bulk Buying</li>
+              <li>Gift Vouchers</li>
+              <li>Nutrition Advice</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="flex flex-col gap-12">
+          <!-- Send Us a Message -->
+          <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 shadow-md">
+            <h2
+              class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100"
+            >
+              Send Us a Message
+            </h2>
+            <form class="space-y-6">
+              <div>
+                <label
+                  for="name"
+                  class="block mb-2 font-semibold text-gray-700 dark:text-gray-300"
+                >
+                  Your Name <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Enter your full name"
+                  class="w-full px-4 py-3 rounded-md border border-gray-300 bg-white focus:border-green-500 focus:ring focus:ring-green-200 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block mb-2 font-semibold text-gray-700 dark:text-gray-300"
+                >
+                  Email Address <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="your.email@example.com"
+                  class="w-full px-4 py-3 rounded-md border border-gray-300 bg-white focus:border-green-500 focus:ring focus:ring-green-200 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+                />
+              </div>
+              <div>
+                <label
+                  for="subject"
+                  class="block mb-2 font-semibold text-gray-700 dark:text-gray-300"
+                >
+                  Subject <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  required
+                  class="w-full px-4 py-3 rounded-md border border-gray-300 bg-white focus:border-green-500 focus:ring focus:ring-green-200 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+                >
+                  <option value="" disabled selected>Select a subject</option>
+                  <option value="product-question">Product Question</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="general">General Inquiry</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  for="message"
+                  class="block mb-2 font-semibold text-gray-700 dark:text-gray-300"
+                >
+                  Your Message <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  placeholder="Tell us how we can help you..."
+                  rows="5"
+                  class="w-full px-4 py-3 rounded-md border border-gray-300 bg-white focus:border-green-500 focus:ring focus:ring-green-200 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-md transition-colors duration-300"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Quick Questions -->
+          <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 shadow-md">
+            <h2
+              class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100"
+            >
+              Quick Questions?
+            </h2>
+            <ul class="text-gray-700 dark:text-gray-300 space-y-4 text-lg">
+              <li>
+                <strong>Delivery Info:</strong> We deliver Tuesday-Friday, 9 AM
+                - 6 PM
+              </li>
+              <li>
+                <strong>Returns:</strong> 100% satisfaction guarantee within 24
+                hours
+              </li>
+              <li>
+                <strong>Subscriptions:</strong> Pause or cancel anytime online
+              </li>
+              <li>
+                <strong>Bulk Orders:</strong> Contact us for wholesale pricing
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Find Us in Bath Section -->
+    <section
+      class="w-full px-6 py-20 bg-gray-100 dark:bg-gray-800 rounded-2xl shadow-md mt-16"
+    >
+      <h2
+        class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100 text-center"
+      >
+        Find Us in Bath
+      </h2>
+      <div
+        class="flex flex-col items-center space-y-6 text-gray-700 dark:text-gray-300 text-center max-w-4xl mx-auto"
+      >
+        <span class="text-5xl" aria-hidden="true">🗺️</span>
+        <p class="leading-relaxed">Interactive map coming soon</p>
+        <p class="font-semibold">
+          Located in the heart of Bath's green district, just 5 minutes from the
+          city center
+        </p>
+      </div>
+    </section>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

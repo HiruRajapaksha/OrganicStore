@@ -1,5 +1,5 @@
-import './style.css';
-const appDiv = document.querySelector<HTMLDivElement>('#app')!;
+import "./style.css";
+const appDiv = document.querySelector<HTMLDivElement>("#app")!;
 
 const navbar = `
 <nav
@@ -21,30 +21,40 @@ const navbar = `
     class="hidden md:flex gap-6 ml-auto flex-nowrap"
   >
     <a
-      href="#"
+      href="index.html"
+      data-page="home"
       class="text-gray-600 dark:text-gray-300 font-semibold text-base px-2 py-1 rounded-md transition-colors duration-300 hover:bg-gray-200 hover:text-green-700 dark:hover:bg-gray-700 dark:hover:text-yellow-400 select-none"
-      >Home</a
     >
+      Home
+    </a>
     <a
-      href="#"
+      href="products.html"
+      data-page="products"
       class="text-gray-600 dark:text-gray-300 font-semibold text-base px-2 py-1 rounded-md transition-colors duration-300 hover:bg-gray-200 hover:text-green-700 dark:hover:bg-gray-700 dark:hover:text-yellow-400 select-none"
-      >Products</a
     >
+      Products
+    </a>
     <a
-      href="#"
+      href="subscription.html"
+      data-page="subscription"
       class="text-gray-600 dark:text-gray-300 font-semibold text-base px-2 py-1 rounded-md transition-colors duration-300 hover:bg-gray-200 hover:text-green-700 dark:hover:bg-gray-700 dark:hover:text-yellow-400 select-none"
-      >Subscription</a
     >
+      Subscription
+    </a>
     <a
-      href="#"
+      href="aboutus.html"
+      data-page="about"
       class="text-gray-600 dark:text-gray-300 font-semibold text-base px-2 py-1 rounded-md transition-colors duration-300 hover:bg-gray-200 hover:text-green-700 dark:hover:bg-gray-700 dark:hover:text-yellow-400 select-none"
-      >About Us</a
     >
+      About Us
+    </a>
     <a
-      href="#"
+      href="contact.html"
+      data-page="contact"
       class="text-gray-600 dark:text-gray-300 font-semibold text-base px-2 py-1 rounded-md transition-colors duration-300 hover:bg-gray-200 hover:text-green-700 dark:hover:bg-gray-700 dark:hover:text-yellow-400 select-none"
-      >Contact</a
     >
+      Contact
+    </a>
   </div>
 
   <button
@@ -65,7 +75,6 @@ const navbar = `
   </button>
 </nav>
 `;
-
 
 export const footer = `
 <footer class="w-full bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 transition-colors duration-500 mt-20 px-8 py-16 font-sans shadow-inner">
@@ -126,74 +135,93 @@ export const footer = `
 </footer>
 `;
 
+appDiv.innerHTML = navbar;
 
 
-appDiv.innerHTML = navbar ;
-
-// Create a container div and append footer HTML string to it
-const footerContainer = document.createElement('div');
+// Append footer at the end of body to place it at bottom of page
+const footerContainer = document.createElement("div");
 footerContainer.innerHTML = footer;
 document.body.appendChild(footerContainer);
 
 
-const themeToggleBtn = document.getElementById('theme-toggle')!;
-const menuToggleBtn = document.getElementById('menu-toggle')!;
-const linksContainer = document.getElementById('nav-links')!;
-const navbarEl = document.getElementById('navbar')!;
-let isLightTheme = !document.documentElement.classList.contains('dark');
+const themeToggleBtn = document.getElementById("theme-toggle")!;
+const menuToggleBtn = document.getElementById("menu-toggle")!;
+const linksContainer = document.getElementById("nav-links")!;
+const navbarEl = document.getElementById("navbar")!;
+let isLightTheme = !document.documentElement.classList.contains("dark");
 let menuVisible = false;
 
 function toggleMenu() {
   menuVisible = !menuVisible;
   if (menuVisible) {
-    linksContainer.classList.remove('hidden');
-    linksContainer.classList.add('flex', 'flex-col', 'w-full', 'mt-2');
+    linksContainer.classList.remove("hidden");
+    linksContainer.classList.add("flex", "flex-col", "w-full", "mt-2");
   } else {
-    linksContainer.classList.add('hidden');
-    linksContainer.classList.remove('flex', 'flex-col', 'w-full', 'mt-2');
+    linksContainer.classList.add("hidden");
+    linksContainer.classList.remove("flex", "flex-col", "w-full", "mt-2");
   }
 }
 
 // On window resize: reset menu for desktop view
 function checkScreen() {
   if (window.innerWidth >= 768) {
-    // Desktop: always show nav links inline, hide hamburger menu
-    menuToggleBtn.classList.add('hidden');
-    linksContainer.classList.remove('hidden', 'flex-col', 'w-full', 'mt-2');
-    linksContainer.classList.add('flex');
+    menuToggleBtn.classList.add("hidden");
+    linksContainer.classList.remove("hidden", "flex-col", "w-full", "mt-2");
+    linksContainer.classList.add("flex");
   } else {
-    // Mobile: show hamburger menu
-    menuToggleBtn.classList.remove('hidden');
+    menuToggleBtn.classList.remove("hidden");
     if (!menuVisible) {
-      // Hide links initially on mobile
-      linksContainer.classList.add('hidden');
-      linksContainer.classList.remove('flex', 'flex-col', 'w-full', 'mt-2');
+      linksContainer.classList.add("hidden");
+      linksContainer.classList.remove("flex", "flex-col", "w-full", "mt-2");
+    }
+  }
+}
+
+// Persistent theme load & toggle
+
+function loadThemePreference() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.documentElement.classList.add("dark");
+    isLightTheme = false;
+    themeToggleBtn.textContent = "🌙";
+  } else if (savedTheme === "light") {
+    document.documentElement.classList.remove("dark");
+    isLightTheme = true;
+    themeToggleBtn.textContent = "☀️";
+  } else {
+    // fallback to system preference
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (prefersDark) {
+      document.documentElement.classList.add("dark");
+      isLightTheme = false;
+      themeToggleBtn.textContent = "🌙";
+    } else {
+      document.documentElement.classList.remove("dark");
+      isLightTheme = true;
+      themeToggleBtn.textContent = "☀️";
     }
   }
 }
 
 function toggleTheme() {
-  if (document.documentElement.classList.contains('dark')) {
-    document.documentElement.classList.remove('dark');
+  if (document.documentElement.classList.contains("dark")) {
+    document.documentElement.classList.remove("dark");
     isLightTheme = true;
-    themeToggleBtn.textContent = '☀️';
+    themeToggleBtn.textContent = "☀️";
+    localStorage.setItem("theme", "light");
   } else {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.add("dark");
     isLightTheme = false;
-    themeToggleBtn.textContent = '🌙';
+    themeToggleBtn.textContent = "🌙";
+    localStorage.setItem("theme", "dark");
   }
 }
 
-menuToggleBtn.addEventListener('click', toggleMenu);
-themeToggleBtn.addEventListener('click', toggleTheme);
-window.addEventListener('resize', checkScreen);
+menuToggleBtn.addEventListener("click", toggleMenu);
+themeToggleBtn.addEventListener("click", toggleTheme);
+window.addEventListener("resize", checkScreen);
 
 // Initialize
 checkScreen();
-if (document.documentElement.classList.contains('dark')) {
-  themeToggleBtn.textContent = '🌙';
-  isLightTheme = false;
-} else {
-  themeToggleBtn.textContent = '☀️';
-  isLightTheme = true;
-}
+loadThemePreference();
